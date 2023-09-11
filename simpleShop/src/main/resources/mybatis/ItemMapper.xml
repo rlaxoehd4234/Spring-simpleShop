@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.simpleshop.mapper.ItemMapper">
+    <insert id="saveItem" parameterType="com.shop.simpleshop.dto.item.ItemSaveDto">
+        insert into item (name, writer, price, itemDetail, stock, sellCount,cartCount,regDate) values (#{name},#{writer}, #{price}, #{itemDetail}, #{stock},0,0, DATE(now()) )
+    </insert>
+
+    <delete id="deleteItem" parameterType="java.lang.Integer">
+        delete from item where item_no = #{itemId};
+    </delete>
+
+</mapper>

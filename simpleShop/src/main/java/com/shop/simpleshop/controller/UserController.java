@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -18,7 +20,9 @@ public class UserController {
         return ResponseEntity.ok().body(userService.signUpUser(userSignUpDto));
     }
     @GetMapping("login")
-    public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto){
+    public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto, HttpSession session){
+        session.setAttribute("id",userLoginDto.getId());
+        session.setMaxInactiveInterval(10000);
         return ResponseEntity.ok().body(userService.loginUser(userLoginDto));
     }
 }

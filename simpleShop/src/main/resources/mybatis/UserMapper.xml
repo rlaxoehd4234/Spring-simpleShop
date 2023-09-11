@@ -6,5 +6,8 @@
     <insert id="signUp" parameterType="com.shop.simpleshop.dto.user.UserSignUpDto">
         insert into User (id, password,name, age, address, email, creteDate,grade) values (#{id}, #{password},#{name}, #{age}, #{address}, #{email}, DATE(NOW()),"ROOKIE")
     </insert>
+    <select id="login" parameterType="com.shop.simpleshop.dto.user.UserLoginDto" resultType="java.lang.String">
+        select password from user where id = #{id};
+    </select>
 
 </mapper>

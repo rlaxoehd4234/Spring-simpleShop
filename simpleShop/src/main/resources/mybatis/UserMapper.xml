@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.simpleshop.mapper.UserMapper">
+    <insert id="signUp" parameterType="com.shop.simpleshop.dto.user.UserSignUpDto">
+        insert into User (id, password,name, age, address, email, creteDate,grade) values (#{id}, #{password},#{name}, #{age}, #{address}, #{email}, DATE(NOW()),"ROOKIE")
+    </insert>
+
+</mapper>

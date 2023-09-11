@@ -1,6 +1,7 @@
 package com.shop.simpleshop.service;
 
 
+import com.shop.simpleshop.dto.user.UserLoginDto;
 import com.shop.simpleshop.dto.user.UserSignUpDto;
 import com.shop.simpleshop.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,5 +19,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int signUpUser(UserSignUpDto userSignUpDto) {
         return userMapper.signUp(userSignUpDto);
+    }
+
+    @Override
+    public String loginUser(UserLoginDto userLoginDto) {
+        return userMapper.login(userLoginDto);
     }
 }

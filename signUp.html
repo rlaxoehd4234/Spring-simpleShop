@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="signUp.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        let password;
+        function gotoLogin(){
+            window.location.href = "login.html";   
+        }
+
+        function signUp(){
+
+            var sendData = {
+                id: document.getElementById("id").value,
+                password: document.getElementById("password").value,
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                address: document.getElementById("address").value,
+                email: document.getElementById("email").value
+            }
+
+            $.ajax({
+                    url : 'http://localhost:8080/api/user/signUp',
+                    method:'POST',
+                    dataType: 'text',
+                    data: JSON.stringify(sendData),
+                    contentType: 'application/json',
+                    xhrFields: {
+                        withCredentials: true // Credentials Request 허용
+                    },
+                    headers: {
+                        'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
+                    },
+                    success: function(data) {
+                        if (data == 1) {
+                            window.location.href = 'main.html';
+                            alert("반갑습니다.")
+                        } else {
+                        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('오류 발생:', error);
+                    }
+                    });
+        }
+
+        $(document).ready(function(){
+            $('#password').keyup(function(){
+                const pwValue = $('#password').val();
+                if(pwValue.length < 10){
+                    $('#pwResult').text("* 비밀번호는 10자 이상이어야합니다.")
+                }else{
+                    $('#pwResult').text("")
+                }
+            })
+            $('#password2').keyup(function(){
+                const pwValue = $('#password').val();
+                const pw2Value = $('#password2').val();
+                if(pw2Value.length < 1 || pw2Value != pwValue){
+                    $('#pwResult2').text("* 비밀번호가 일치하지 않습니다.").css('color','red');
+                }else{
+                    $('#pwResult2').text("* 비밀번호가 일치합니다.").css('color','green');
+                }
+            })
+            $('#id').keyup(function(){
+                const idValue = $('#id').val();
+                if(idValue.length < 10){
+                    $('#idResult').text("* 아이디는 10자 이상이어야합니다.")
+                }else{
+                    $('#idResult').text("")
+                }
+            })
+            $('#name').keyup(function(){
+                const nameValue = $('#name').val();
+                if(nameValue.length < 1){
+                    $('#nameResult').text("* 이름은 1자 이상이어야합니다.")
+                }else{
+                    $('#nameResult').text("")
+                }
+            })
+            $('#age').keyup(function(){
+                const ageValue = $('#age').val();
+                if(ageValue.length < 1){
+                    $('#ageResult').text("* 값을 입력해주세요.")
+                }else{
+                    $('#ageResult').text("")
+                }
+            })
+            $('#age').keyup(function(){
+                const addressValue = $('#address').val();
+                if(addressValue.length < 1){
+                    $('#addressResult').text("* 값을 입력해주세요.")
+                }else{
+                    $('#addressResult').text("")
+                }
+            })
+        
+            $('#send').click(function(){a
+                signUp();
+            })
+        })
+
+    </script>
+
+</head>
+<body>
+    <h1>signUp</h1>
+    <div class = "signUp">
+        <input type="text" id = "id" placeholder="아이디">
+        <p id="idResult"></p>
+        <input type="password" id ="password" placeholder="비밀번호">
+        <p id="pwResult"></p>
+        <input type="password" id ="password2" placeholder="비밀번호 확인">
+        <p id="pwResult2"></p>
+        <input type="text" id= "name" placeholder="이름">
+        <p id="nameResult"></p>
+        <input type="text" id="age" placeholder="나이">
+        <p id="ageResult"></p>
+        <input type="text" id = "address" placeholder="주소">
+        <p id="addressResult"></p>
+        <input type="text" id = "email" placeholder="이메일">
+        <p id="idResult"></p>
+
+
+        <button id = "send">회원가입</button>
+        <button id = "send" onclick="gotoLogin()">뒤로 가기</button>
+    </div>
+
+    <footer>
+        <div class = "customer">
+            <a href="#">이용약관</a>|
+            <a href="#">개인정보처리방침</a>|
+            <a href="#">책임의 한계와 법적고지</a>|
+            <a href="#">회원정보 고객센터</a> 
+        </div>
+        @CopyRight Corp: simpleShop
+    </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+body{
+    background-color: white;
+}
+h1{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 50px;
+    color: royalblue;
+    font-weight: 1500;
+}
+
+.lgn_form{
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-top: 30px;
+    background-color: white;
+    align-items: center;
+    border-radius: 15px;
+    border:1px solid black;
+}
+.lgn_form p {
+    color: red;
+    align-items: end;
+}
+.lgn_form input{
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+}
+.lgn_form input:focus{
+    background-color: lightblue;
+
+}
+.lgn_form button{
+    width: 350px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: royalblue;
+    font-size: 20px;
+}
+
+.info{
+   text-align: center;
+   margin-top: 70px;
+}
+.info a{
+    text-decoration: none;
+    font-size: 20px;
+    color: royalblue;
+}
+
+.add {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */ 
+}
+.add img{
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+}
+.customer a{
+    text-decoration: none;
+    font-size: 15px;
+}
+footer{
+    text-align: center;
+    margin-top: 30px;
+}

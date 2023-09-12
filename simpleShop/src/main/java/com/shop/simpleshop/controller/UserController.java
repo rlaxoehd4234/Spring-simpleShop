@@ -19,7 +19,7 @@ public class UserController {
     public ResponseEntity<Integer> save(@RequestBody UserSignUpDto userSignUpDto){
         return ResponseEntity.ok().body(userService.signUpUser(userSignUpDto));
     }
-    @GetMapping("login")
+    @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto, HttpSession session){
         session.setAttribute("id",userLoginDto.getId());
         session.setMaxInactiveInterval(10000);

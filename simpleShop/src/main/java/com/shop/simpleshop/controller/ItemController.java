@@ -1,6 +1,8 @@
 package com.shop.simpleshop.controller;
 
+import com.shop.simpleshop.dto.item.ItemResponseListDto;
 import com.shop.simpleshop.dto.item.ItemSaveDto;
+import com.shop.simpleshop.dto.item.ItemUpdateDto;
 import com.shop.simpleshop.service.ItemService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/item")
@@ -27,7 +30,6 @@ public class ItemController {
     public ResponseEntity<Integer> saveItem(@RequestBody ItemSaveDto itemSaveDto, HttpSession session){
         return ResponseEntity.ok().body(itemService.saveItem(itemSaveDto,session));
     }
-    // TODO: ITEM 삭제 로직 작성
     @ApiOperation(value ="상품 삭제", notes ="상품 삭제 정상 작동시 1 리턴")
     @ApiResponses({
             @ApiResponse(code = 200 , message = "API 정상 작동"),
@@ -39,13 +41,28 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.deleteItem(itemId));
     }
 
-    // TODO: ITEM 추천 System
 
-    // TODO: R 구현
+    @ApiOperation(value ="상품 업데이트", notes ="상품 삭제 정상 작동시 1리턴")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 400, message = "권한 없음"),
+            @ApiResponse(code = 500, message = "서버 에러")
+    })
+    @PatchMapping("/update/{itemId}")
+    public ResponseEntity<Integer> updateItem(@PathVariable("itemId") int itemId, @RequestBody ItemUpdateDto itemUpdateDto){
+        return ResponseEntity.ok().body(itemService.updateItem(itemId,itemUpdateDto));
+    }
 
-    // TODO: D 구현
-
-    // TODO: U 구현
+    @ApiOperation(value = "상품 리스트", notes = "상품 리스트 정상 작동시 리스트 리턴")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 400, message = "권한 없음"),
+            @ApiResponse(code = 500, message = "서버 에러")
+    })
+    @GetMapping("/findAll")
+    public ResponseEntity<List<ItemResponseListDto>> findAllItem(){
+        return ResponseEntity.ok().body(itemService.findAllItem());
+    }
 
 
 }

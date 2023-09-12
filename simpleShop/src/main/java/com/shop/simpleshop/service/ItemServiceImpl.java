@@ -1,12 +1,15 @@
 package com.shop.simpleshop.service;
 
+import com.shop.simpleshop.dto.item.ItemResponseListDto;
 import com.shop.simpleshop.dto.item.ItemSaveDto;
+import com.shop.simpleshop.dto.item.ItemUpdateDto;
 import com.shop.simpleshop.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,5 +26,15 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public int deleteItem(int itemId) {
         return itemMapper.deleteItem(itemId);
+    }
+
+    @Override
+    public int updateItem(int itemId, ItemUpdateDto itemUpdateDto) {
+        return itemMapper.updateItem(itemId, itemUpdateDto);
+    }
+
+    @Override
+    public List<ItemResponseListDto> findAllItem() {
+        return itemMapper.findAllItem();
     }
 }

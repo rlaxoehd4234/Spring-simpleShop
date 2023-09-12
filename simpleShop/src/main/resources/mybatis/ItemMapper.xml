@@ -11,4 +11,17 @@
         delete from item where item_no = #{itemId};
     </delete>
 
+    <update id="updateItem" parameterType="java.util.HashMap">
+        update item set name = #{itemUpdateDto.name}
+                      , price = #{itemUpdateDto.price}
+                      , stock = #{itemUpdateDto.stock}
+                      , itemDetail = #{itemUpdateDto.itemDetail}
+                      , writer = #{itemUpdateDto.writer}
+                      , modiftDate = DATE(now())
+        where item_no = #{itemId};
+    </update>
+    <select id="findAllItem" resultType="com.shop.simpleshop.dto.item.ItemResponseListDto" >
+        select * from item;
+    </select>
+
 </mapper>

@@ -7,6 +7,65 @@
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8080/api/item/findAll',
+                method: 'GET',
+                dataType: 'text',
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                // headers:{
+                //     'Origin' : 'http://127.0.0.1:5500',
+                // },
+                success: function(data){    
+                    console.log(data);
+                    var jsonData = JSON.parse(data);
+                    $.each(jsonData, function(index,item){
+                        console.log("Item"+index + ": 저자:" + item.name + " 작성자:" + item.writer + " 가격:" + item.price +" 재고:" + item.stock);
+                        $("#item_table").append(
+                            "<tr> <td></td><td>" + item.name + "</td> <td> " + item.writer + "</td> <td>" + item.price + "</td> <td>"+ item.stock + "</td> <td> " + item.regDate + "</td> <td>" + item.cartCount + "</td> <td>"+ item.sellCount + "</td> <tr>"
+                        )
+                    })
+                    
+                },
+                error: function(xhr,status,error){
+                    console.error('오류 발생', error);
+                }
+
+            })
+        })
+
+        //  $.ajax({
+        //     url: 'http://localhost:8080/api/user/login',
+        //             method: 'POST',
+        //             dataType: 'text', // 서버에서 텍스트 응답을 받기 위해 dataType을 설정합니다.
+        //             data: JSON.stringify(sendData),
+        //             contentType: 'application/json',
+        //             xhrFields: {
+        //                 withCredentials: true // Credentials Request 허용
+        //             },
+        //             headers: {
+        //                 'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
+        //             },
+        //             success: function(data) {
+        //                 // 서버에서 받은 비밀번호와 입력한 비밀번호를 비교합니다.
+        //                 if (data === $('#password').val()) {
+        //                 // 비밀번호가 일치하면 페이지를 이동합니다.
+        //                 window.location.href='main.html';
+        //                 } else {
+        //                 alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        //                 }
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error('오류 발생:', error);
+        //             }
+        //             });
+
+    </script>
+    
 </head>
 <body>
     <header>
@@ -24,6 +83,7 @@
             <li><a href ="#">상품 조회</a></li>
             <li><a href ="#">인기 상품</a></li>
             <li><a href ="#">상품 랭킹</a></li>
+            <li><a href ="enroll.html">상품 등록</a></li>
         </ul>
     </nav>
     <section>
@@ -33,41 +93,16 @@
             <b>다다익선</b>
         </article>
         <article>
-            <table>
-
+            <table id ="item_table">
                 <tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr>
-                <tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                </tr><tr>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
-                    <td><img src = "images.jpeg"><br>제목:JPA <br>저자:김영한 <br>가격:27000</td>
+                    <th>이미지(추가 예정)</th>
+                    <th>제목</th>
+                    <th>저자</th>
+                    <th>가격</th>
+                    <th>재고</th>
+                    <th>등록일</th>
+                    <th>찜 수</th>
+                    <th>구매 수</th>
                 </tr>
               
             </table>

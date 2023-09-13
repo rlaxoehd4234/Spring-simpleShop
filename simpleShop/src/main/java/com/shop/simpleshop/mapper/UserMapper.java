@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
      int signUp(UserSignUpDto userSignUpDto);
      String login(UserLoginDto userLoginDto);
+     int findById(String id);
 }

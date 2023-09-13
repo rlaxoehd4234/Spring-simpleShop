@@ -67,6 +67,14 @@ td img{
 footer{
     margin-top: 100px;
 }
+#foot1, #foot2{
+    text-align: center;
+}
+
+p{
+    border: 1px solid black;
+    border-radius: 10px;
+}
 
 
 

@@ -2,24 +2,47 @@
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+
     <script type="text/javascript">
 
 
+    let jsonData ;
+            
+    $(document).ready(function(){
+        $.ajax({
+                url: 'http://localhost:8080/api/item/anal/writer',
+                method: 'GET',
+                dataType: 'text',
+                contentType: 'application/json',
+                xhrFields:{
+                    withCredentials: true
+                },
+                success: function(data){
+                        jsonData = JSON.parse(data);
+                        google.charts.load('current', {'packages':['corechart']});
+                        google.charts.setOnLoadCallback(drawChart);
+                }
+            })
+    })
 
 
 
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
+        console.log(jsonData);
+        console.log(jsonData);
+        console.log(jsonData);
+        
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Eat',      2],
-          ['Eat',      2]
-        ]);
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Task');
+        data.addColumn('number', 'Hours per Day');
+
+        for (var i = 0; i < jsonData.length; i++) {
+            data.addRow([jsonData[i].writer, jsonData[i].count]);
+        }
+
 
         var options = {
           title: 'HTML CSS SCORE',
@@ -27,13 +50,9 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
 
 
         chart.draw(data, options);
-        chart1.draw(data, options);
-        chart2.draw(data, options);
 
 
 

@@ -1,5 +1,6 @@
 package com.shop.simpleshop.service;
 
+import com.shop.simpleshop.dto.item.ItemResponseAnalDto;
 import com.shop.simpleshop.dto.item.ItemResponseListDto;
 import com.shop.simpleshop.dto.item.ItemSaveDto;
 import com.shop.simpleshop.dto.item.ItemUpdateDto;
@@ -36,5 +37,10 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public List<ItemResponseListDto> findAllItem() {
         return itemMapper.findAllItem();
+    }
+
+    @Override
+    public List<ItemResponseAnalDto> analWriter() {
+        return itemMapper.analWriter();
     }
 }

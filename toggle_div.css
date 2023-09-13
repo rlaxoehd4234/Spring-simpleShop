@@ -1,0 +1,14 @@
+tr #toggle_div {
+    width: 700px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;  
+}
+
+tr #toggle_div p{
+    width: 600px;
+    display: flex;
+    flex-direction: column;  
+    font-size: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

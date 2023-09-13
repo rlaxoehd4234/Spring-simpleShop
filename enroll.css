@@ -1,0 +1,71 @@
+body{margin: auto;}
+h1{
+    text-align: center;
+    color: royalblue;
+    margin-top: 100px;
+}
+
+.enroll-form {
+    display: flex;
+    flex-direction: column;
+    margin-right:auto;
+    width: 1000px;
+    justify-content: center;
+    border-radius: 8px;
+    align-items: start;
+
+    
+}
+.enroll-form input{
+    margin: 20px 0px 0px 20px;
+    height: 35px;
+    border-radius: 8px;
+    border-color: royalblue;
+}
+#name, #price, #stock{
+    width: 300px;
+}
+#itemDetail{
+    width: 500px;
+    height: 200px;
+}
+.enroll-form #btn{
+    margin: 20px 0px 20px 20px;
+}
+
+aside{
+    border: 3px solid royalblue;
+    border-radius: 15px 0px 0px 15px;
+    margin-left: 360px;
+    width: 30%;
+    height: 700px;
+    float: left;
+}
+section{
+    border: 3px solid royalblue;
+    border-radius: 0px 15px 15px 0px;
+    width: 30%;
+    height: 700px;
+    float: left;
+    text-align: center;
+}
+section #section_info {
+    margin-top: 30px;
+}
+section img{
+    width: 450px;
+}
+
+/* 
+<input type="text" id = "name" placeholder="상품명">
+<p></p>
+<input type="text" id = "price" placeholder="가격">
+<p></p>
+<input type="text" id = "stock" placeholder="재고">
+<p></p>
+<input type="textarea" id = "itemDetail" placeholder="상세설명">
+<p></p>
+<input type="file" id="file">
+<p></p>
+<button id="enroll">등록</button>
+<button id="enroll">임시저장</button> */

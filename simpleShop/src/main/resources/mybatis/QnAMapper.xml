@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.simpleshop.mapper.QnAMapper">
+    <insert id="saveQnA" parameterType="com.shop.simpleshop.dto.QnA.QnARequestSaveDto">
+        insert into qna (user_no, item_no, title, content, password, Answer) values (#{user_no},#{item_no},#{title},#{content},#{password},"확인 안함")
+    </insert>
+    <select id="findAllQnA" resultType="com.shop.simpleshop.dto.QnA.QnAResponseListDto">
+        select q.qna_no ,q.title, u.id ,q.Answer from qna q inner join user u using(user_no);
+    </select>
+    <select id="findInfo" parameterType="java.lang.Integer" resultType="com.shop.simpleshop.dto.QnA.QnAResponseInfoDto">
+        select q.qna_no, q.title, u.id, q.content from qna q inner join user u using(user_no) where qna_no = #{qna_no};
+    </select>
+</mapper>

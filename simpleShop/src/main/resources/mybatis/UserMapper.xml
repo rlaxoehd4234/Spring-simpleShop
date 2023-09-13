@@ -9,5 +9,8 @@
     <select id="login" parameterType="com.shop.simpleshop.dto.user.UserLoginDto" resultType="java.lang.String">
         select password from user where id = #{id};
     </select>
+    <select id="findById" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select user_no from user where id = #{id}
+    </select>
 
 </mapper>

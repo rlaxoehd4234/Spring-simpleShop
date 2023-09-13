@@ -1,5 +1,6 @@
 package com.shop.simpleshop.controller;
 
+import com.shop.simpleshop.dto.item.ItemResponseAnalDto;
 import com.shop.simpleshop.dto.item.ItemResponseListDto;
 import com.shop.simpleshop.dto.item.ItemSaveDto;
 import com.shop.simpleshop.dto.item.ItemUpdateDto;
@@ -62,6 +63,12 @@ public class ItemController {
     @GetMapping("/findAll")
     public ResponseEntity<List<ItemResponseListDto>> findAllItem(){
         return ResponseEntity.ok().body(itemService.findAllItem());
+    }
+
+
+    @GetMapping("/anal/writer")
+    public ResponseEntity<List<ItemResponseAnalDto>> findAnalWriter(){
+        return ResponseEntity.ok().body(itemService.analWriter());
     }
 
 

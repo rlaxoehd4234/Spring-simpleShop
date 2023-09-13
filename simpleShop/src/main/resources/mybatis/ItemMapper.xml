@@ -24,4 +24,7 @@
         select * from item;
     </select>
 
+    <select id="analWriter" resultType="com.shop.simpleshop.dto.item.ItemResponseAnalDto">
+        select writer, count(item_no) as count from item group by writer;
+    </select>
 </mapper>

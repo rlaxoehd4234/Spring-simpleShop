@@ -10,11 +10,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemResponseListDto {
+    private int item_no;
     private String name;
     private int sellCount;
     private int cartCount;
     private String writer;
     private int price;
+    private int stock;
     private String itemDetail;
     private String regDate;
 }

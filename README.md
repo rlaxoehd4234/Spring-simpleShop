@@ -9,8 +9,8 @@
 - Best Review 추천 기능
 - 아이템 랭킹 기능
 # ERD DIAGRAM
-![스크린샷 2023-09-11 오후 3 09 55](https://github.com/rlaxoehd4234/Spring-simpleShop/assets/92311926/8bb69559-7e50-40c3-973e-1a0759049114)
 
+![스크린샷 2023-09-13 오후 8 03 49](https://github.com/rlaxoehd4234/Spring-simpleShop/assets/92311926/ed6d0e01-0e8c-4753-b37b-72b40a8ee324)
 
 
 # 기술 스택 (추후 추가 예정)

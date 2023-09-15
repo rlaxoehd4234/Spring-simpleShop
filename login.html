@@ -38,47 +38,6 @@
                         console.error('오류 발생:', error);
                     }
                     });
-
-            
-            // fetch('http://localhost:8080/api/user/login', {
-            //     method: 'POST',
-            //     credentials: 'include', // Credentials Request 허용
-            //     headers: {
-            //         'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
-            //         'Content-Type':'application/json'
-            //     },
-            //     body: JSON.stringify(sendData)
-            // })
-            // .then(response => response.text())
-            // .then(data => {
-            //     password = data;
-            // })
-            // .catch(error => {
-            //     console.error('오류 발생:', error);
-            // });
-
-            // if(password == document.getElementById("password").value){
-            //     window.location.replace('main.html');
-            // }else{
-            //     alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-            // }
-
-            // $.ajax({
-            //     url: 'http://localhost:8080/api/user/login',
-            //     method : 'GET',
-            //     dataType: 'json',
-            //     data: JSON.stringify(sendData),
-            //     contentType: 'application/json',
-            //     xhrFields:{
-            //         withCredentials: true
-            //     },
-            //     success:function(data){
-            //         console.log(data);
-            //     },
-            //     error: function(xhr, status, error){
-            //         console.error('데이터를 가져오는 중 오류 발생',error);
-            //     },
-            // })
         }
         $(document).ready(function(){
             $('#password').on('keyup', function(){

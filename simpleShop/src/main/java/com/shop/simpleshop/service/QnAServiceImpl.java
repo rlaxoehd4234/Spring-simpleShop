@@ -34,4 +34,9 @@ public class QnAServiceImpl implements QnAService{
     public QnAResponseInfoDto findInfo(int qna_no) {
         return qnAMapper.findInfo(qna_no);
     }
+
+    @Override
+    public int deleteQnA(int qna_no) {
+        return qnAMapper.deleteQnA(qna_no);
+    }
 }

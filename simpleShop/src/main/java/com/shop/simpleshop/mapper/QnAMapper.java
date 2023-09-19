@@ -12,4 +12,5 @@ public interface QnAMapper {
     int saveQnA(QnARequestSaveDto qnARequestSaveDto);
     List<QnAResponseListDto> findAllQnA();
     QnAResponseInfoDto findInfo(int qna_no);
+    int deleteQnA(int qna_no);
 }

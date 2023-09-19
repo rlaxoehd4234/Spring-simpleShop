@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="qnaenroll.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        function gotoMain(){
+            document.location.href='main.html';
+        }
+
+        function enroll(){
+
+            var sendData = {
+                title: document.getElementById("title").value,
+                content: document.getElementById("content").value
+            };
+            $.ajax({
+                url: 'http://localhost:8080/api/qna/save',
+                method: 'POST',
+                dataType: 'text',
+                data: JSON.stringify(sendData),
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data){
+                    if(data == 1){
+                        alert("빠른 시일내로 답변드리겠습니다.");
+                        window.location.href = 'qna.html';
+                    }
+                    else{
+                        alert('등록 실패....')
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error('오류 발생' ,error);
+                }
+
+            });
+
+        }
+        // var sendData = {
+        //         id: document.getElementById("id").value,
+        //         password: document.getElementById("password").value
+        //     }
+        //     $.ajax({
+        //             url: 'http://localhost:8080/api/user/login',
+        //             method: 'POST',
+        //             dataType: 'text', // 서버에서 텍스트 응답을 받기 위해 dataType을 설정합니다.
+        //             data: JSON.stringify(sendData),
+        //             contentType: 'application/json',
+        //             xhrFields: {
+        //                 withCredentials: true // Credentials Request 허용
+        //             },
+        //             headers: {
+        //                 'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
+        //             },
+        //             success: function(data) {
+        //                 // 서버에서 받은 비밀번호와 입력한 비밀번호를 비교합니다.
+        //                 if (data === $('#password').val()) {
+        //                 // 비밀번호가 일치하면 페이지를 이동합니다.
+        //                 window.location.href='main.html';
+        //                 } else {
+        //                 alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        //                 }
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error('오류 발생:', error);
+        //             }
+        //             });
+        
+
+        $(document).ready(function(){
+            alert('QnA 게시판을 이용해주셔서 감사합니다. 질문에 면밀히 답하겠습니다.')
+        })
+    </script>
+</head>
+<body>
+    
+    <div id = enroll_form>
+        <h1>QnA 등록하기</h1>
+        <input id = "title" type="text" placeholder="제목">
+        <input id = "content" type="textarea" placeholder="본문">
+        <p>
+            <button onclick="gotoMain()">메인으로</button>
+            <button onclick="enroll()">등록하기</button>
+        </p>
+            
+    </div>
+</body>
+</html>

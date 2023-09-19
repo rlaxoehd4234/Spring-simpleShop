@@ -1,6 +1,7 @@
 package com.shop.simpleshop.controller;
 
 import com.shop.simpleshop.dto.user.UserLoginDto;
+import com.shop.simpleshop.dto.user.UserRequestUpdateDto;
 import com.shop.simpleshop.dto.user.UserSignUpDto;
 import com.shop.simpleshop.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "회원 가입", notes = "정상 작동 시 비밀 번호 리턴")
+    @ApiOperation(value = "로그인", notes = "정상 작동 시 비밀 번호 리턴")
     @ApiResponses({
             @ApiResponse(code = 200, message = "로그인 완료"),
             @ApiResponse(code = 400, message = "로그인 실패(비밀 번호 & 아이디 통합)")
@@ -40,4 +41,24 @@ public class UserController {
         session.setMaxInactiveInterval(100000);
         return ResponseEntity.ok().body(userService.loginUser(userLoginDto));
     }
+
+    @ApiOperation(value = "유저 정보 수정", notes = "정상 작동시 1 리턴")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "유저 정보 업데이트 완료"),
+            @ApiResponse(code = 401, message = "권한이 없는 유저")
+    })
+    @PatchMapping("/updateInfo")
+    public ResponseEntity<Integer> updateUserInfo(@RequestBody UserRequestUpdateDto userRequestUpdateDto, HttpSession session){
+        return ResponseEntity.ok().body(userService.updateUserInfo(userRequestUpdateDto, session));
+    }
+    @ApiOperation(value = "유저 탈퇴 ", notes = "정상 작동시 1 리턴")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "유저 탈퇴 완료"),
+            @ApiResponse(code = 401, message = "권한이 없는 유저")
+    })
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<Integer> deleteUser(HttpSession session){
+        return ResponseEntity.ok().body(userService.deleteUser(session));
+    }
+
 }

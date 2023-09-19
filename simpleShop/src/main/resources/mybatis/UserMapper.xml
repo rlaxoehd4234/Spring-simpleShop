@@ -12,5 +12,14 @@
     <select id="findById" parameterType="java.lang.String" resultType="java.lang.Integer">
         select user_no from user where id = #{id}
     </select>
+    <update id = "updateUserInfo" parameterType="com.shop.simpleshop.dto.user.UserRequestUpdateDto">
+        update user set
+                        email = #{email},
+                        address = #{address}
+        where user_no = #{user_no};
+    </update>
+    <delete id = "deleteUser" parameterType="java.lang.Integer">
+        delete from user where user_no = #{user_no};
+    </delete>
 
 </mapper>

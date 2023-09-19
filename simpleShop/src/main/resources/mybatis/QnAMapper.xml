@@ -12,4 +12,7 @@
     <select id="findInfo" parameterType="java.lang.Integer" resultType="com.shop.simpleshop.dto.QnA.QnAResponseInfoDto">
         select q.qna_no, q.title, u.id, q.content from qna q inner join user u using(user_no) where qna_no = #{qna_no};
     </select>
+    <delete id="deleteQnA" parameterType="java.lang.Integer">
+        delete from qna where qna_no = #{qna_no};
+    </delete>
 </mapper>

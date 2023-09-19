@@ -8,6 +8,8 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     
     <script>
+    
+
         $(document).ready(function(){
             $.ajax({
                 url: 'http://localhost:8080/api/item/findAll',
@@ -36,6 +38,7 @@
                 }
 
             })
+
         })
 
         //  $.ajax({
@@ -63,6 +66,10 @@
         //                 console.error('오류 발생:', error);
         //             }
         //             });
+       
+        function gotoList(){
+            document.location.href = 'qna.html';
+        }
 
     </script>
     
@@ -84,7 +91,7 @@
             <li><a href ="#">인기 상품</a></li>
             <li><a href ="#">상품 랭킹</a></li>
             <li><a href ="enroll.html">상품 등록</a></li>
-            <li><a href ="qna.html">QnA 게시판</a></li>
+            <li><a onclick="gotoList()">QnA 게시판</a></li>
             <li><a href ="chart.html">통계</a></li>
 
 

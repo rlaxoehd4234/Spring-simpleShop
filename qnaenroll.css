@@ -1,0 +1,40 @@
+
+
+
+div{
+    display: flex;
+    flex-direction: column;
+    width: 1400px;
+    margin: auto;
+    margin-top: 150px;
+    gap: 30px;
+    border: 3px solid royalblue;
+    border-radius: 10px;
+    padding: 30px;
+}
+div h1{
+    color: royalblue;
+    font-size: 40px;
+}
+
+
+div #title {
+    height: 40px;
+    width: 700px;
+    border-radius: 10px;
+    border: 3px solid royalblue;
+}
+
+div #content {
+    height: 500px;
+    border-radius: 10px;
+    border: 3px solid royalblue;
+}
+div button{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: royalblue;
+    color: white;
+    margin-left: auto;
+}

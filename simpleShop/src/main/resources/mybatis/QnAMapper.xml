@@ -15,4 +15,7 @@
     <delete id="deleteQnA" parameterType="java.lang.Integer">
         delete from qna where qna_no = #{qna_no};
     </delete>
+    <select id = "findByUserNo" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select user_no from qna where qna_no = #{qna_no};
+    </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.shop.simpleshop.service;
 import com.shop.simpleshop.dto.QnA.QnARequestSaveDto;
 import com.shop.simpleshop.dto.QnA.QnAResponseInfoDto;
 import com.shop.simpleshop.dto.QnA.QnAResponseListDto;
+import com.shop.simpleshop.exception.domain.UserException;
+import com.shop.simpleshop.exception.domain.UserExceptionType;
 import com.shop.simpleshop.mapper.QnAMapper;
 import com.shop.simpleshop.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +38,14 @@ public class QnAServiceImpl implements QnAService{
     }
 
     @Override
-    public int deleteQnA(int qna_no) {
+    public int deleteQnA(int qna_no, HttpSession session) {
+        validUser(qna_no, session);
         return qnAMapper.deleteQnA(qna_no);
+    }
+
+    public void validUser(int qna_no , HttpSession session){
+        if(qnAMapper.findByUserNo(qna_no) != userMapper.findById((String) session.getAttribute("id"))){
+            throw new UserException(UserExceptionType.UN_AUTHORIZE_ERROR);
+        }
     }
 }

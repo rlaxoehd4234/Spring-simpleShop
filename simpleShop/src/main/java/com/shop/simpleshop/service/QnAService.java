@@ -13,5 +13,5 @@ public interface QnAService {
     List<QnAResponseListDto> findAllQnA();
     QnAResponseInfoDto findInfo(int qna_no);
 
-    int deleteQnA(int qna_no);
+    int deleteQnA(int qna_no , HttpSession session);
 }

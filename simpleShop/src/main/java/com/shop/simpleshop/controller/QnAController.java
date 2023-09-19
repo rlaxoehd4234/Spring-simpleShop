@@ -58,7 +58,7 @@ public class QnAController {
             @ApiResponse(code = 401, message = "권한이 없는 유저")
     })
     @DeleteMapping("/delete/{qna_no}")
-    public ResponseEntity<Integer> deleteQnA(@PathVariable("qna_no") int qna_no){
-        return ResponseEntity.ok().body(qnAService.deleteQnA(qna_no));
+    public ResponseEntity<Integer> deleteQnA(@PathVariable("qna_no") int qna_no ,HttpSession session){
+        return ResponseEntity.ok().body(qnAService.deleteQnA(qna_no, session));
     }
 }

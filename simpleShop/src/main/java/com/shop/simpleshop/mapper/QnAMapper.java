@@ -13,4 +13,5 @@ public interface QnAMapper {
     List<QnAResponseListDto> findAllQnA();
     QnAResponseInfoDto findInfo(int qna_no);
     int deleteQnA(int qna_no);
+    int findByUserNo(int qna_no);
 }

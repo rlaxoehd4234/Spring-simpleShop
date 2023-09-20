@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="mypage.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <script>
+
+        $(document).ready(function(){
+            $.ajax({
+                url : 'http://localhost:8080/api/user/findUser',
+                method : 'GET',
+                dataType: 'text',
+                contentType : 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data){
+                    console.log(data);
+                    var jsonData = JSON.parse(data);
+                    var name = document.getElementById("name");
+                    var age = document.getElementById("age");
+
+                    name.innerText = '이름 : ' + jsonData.name;
+                    age.innerText = '나이 : ' + jsonData.age;
+
+                }
+            })
+          
+        })
+
+        function gotoUpdate(){
+            var address = {address:document.getElementById("address").value,
+                            email: document.getElementById("email").value
+                            }
+            $.ajax({
+                url :'http://localhost:8080/api/user/updateInfo',
+                method: 'PATCH',
+                dataType: 'text',
+                data: JSON.stringify(address),
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data){
+                    var jsonData = JSON.parse(data);
+                    if(jsonData == 1){
+                        alert("수정이 완료되었습니다!")
+                        document.location.href = 'myPage.html';
+                    } 
+                },
+                error: function(xhr, status, error){
+                    console.error('오류 발생' ,error);
+                }
+            })
+        };
+
+
+        function gotoHome(){
+            $.ajax({
+                url: 'http://localhost:8080/api/user/deleteUser',
+                method: 'DELETE',
+                dataType: 'text',
+                contentType: 'application/json',
+                xhrFields:{
+                    withCredentials: true
+                },
+                success: function(data){
+                    var jsonData = JSON.parse(data);
+                    if(jsonData == 1){
+                        alert('삭제가 완료되었습니다.');
+                        document.location.href = 'login.html';
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error('오류 발생' ,error);
+                }
+            })
+        }
+
+    
+    </script>
+</head>
+<body>
+    <h1>마이페이지</h1>
+    <div id = "info">
+        <p id = "name"></p>
+        <p id = "age"></p>
+        <input type = "text" placeholder="주소" id = "address">
+        <input type = "text" placeholder="이메일" id = "email">
+
+        
+        <div><button id = "update" onclick="gotoUpdate()">수정하기</button>
+            <button id = "delete" onclick="gotoHome()">탈퇴하기</button>
+        </div>
+        
+    </div>
+   
+    
+</body>
+</html>

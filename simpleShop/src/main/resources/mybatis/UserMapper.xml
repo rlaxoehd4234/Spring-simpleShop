@@ -21,5 +21,11 @@
     <delete id = "deleteUser" parameterType="java.lang.Integer">
         delete from user where user_no = #{user_no};
     </delete>
+    <select id = "infoUser" parameterType="java.lang.Integer" resultType="com.shop.simpleshop.dto.user.UserResponseInfoDto">
+        select name, age, address, email from user where user_no = #{user_no};
+    </select>
+    <select id = "findAllUser" resultType="com.shop.simpleshop.dto.user.UserResponseListDto">
+        select name, email, creteDate,age from user;
+    </select>
 
 </mapper>

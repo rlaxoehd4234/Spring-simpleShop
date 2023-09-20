@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="mypage.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url : 'http://localhost:8080/api/user/findUser',
+                method : 'GET',
+                dataType: 'text',
+                contentType : 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data){
+                    console.log(data);
+                    var jsonData = JSON.parse(data);
+                    var name = document.getElementById("name");
+                    var age = document.getElementById("age");
+                    var address = document.getElementById("address");
+                    var email = document.getElementById("email");
+
+                    name.innerText = '이름 : ' + jsonData.name;
+                    age.innerText = '나이 : ' + jsonData.age;
+                    address.innerText = '주소 : ' + jsonData.address;
+                    email.innerText = '이메일 : ' + jsonData.email;
+
+                }
+            })
+          
+        })
+        function gotoUpdate(){
+            document.location.href = "update.html";
+        }
+
+        // $.ajax({
+        //             url: 'http://localhost:8080/api/user/login',
+        //             method: 'POST',
+        //             dataType: 'text', // 서버에서 텍스트 응답을 받기 위해 dataType을 설정합니다.
+        //             data: JSON.stringify(sendData),
+        //             contentType: 'application/json',
+        //             xhrFields: {
+        //                 withCredentials: true // Credentials Request 허용
+        //             },
+        //             headers: {
+        //                 'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
+        //             },
+        //             success: function(data) {
+        //                 // 서버에서 받은 비밀번호와 입력한 비밀번호를 비교합니다.
+        //                 if (data === $('#password').val()) {
+        //                 // 비밀번호가 일치하면 페이지를 이동합니다.
+        //                 document.location.href='main.html';
+        //                 } else {
+        //                 alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        //                 }
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error('오류 발생:', error);
+        //             }
+        //             });
+        function gotoList(){
+            document.location.href = 'userList.html'
+        }
+    </script>
+</head>
+<body>
+    <h1>마이페이지</h1>
+    <div id = "info">
+        <p id = "name">이름 :</p>
+        <p id = "age"></p>
+        <p id = "address"></p>
+        <p id = "email"></p>
+        <div><button id = "update" onclick="gotoUpdate()">수정하기</button>
+            <button id = "delete" onclick="gotoList()">회원 목록</button>
+        </div>
+        
+    </div>
+   
+
+    
+</body>
+</html>

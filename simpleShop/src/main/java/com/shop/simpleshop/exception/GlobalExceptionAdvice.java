@@ -3,8 +3,11 @@ package com.shop.simpleshop.exception;
 
 import com.shop.simpleshop.dto.exception.BaseExceptionDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.sql.SQLException;
 
 @RestControllerAdvice
 public class GlobalExceptionAdvice {

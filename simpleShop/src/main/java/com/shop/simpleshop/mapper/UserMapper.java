@@ -1,9 +1,9 @@
 package com.shop.simpleshop.mapper;
 
-import com.shop.simpleshop.dto.user.UserLoginDto;
-import com.shop.simpleshop.dto.user.UserRequestUpdateDto;
-import com.shop.simpleshop.dto.user.UserSignUpDto;
+import com.shop.simpleshop.dto.user.*;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -12,5 +12,6 @@ public interface UserMapper {
      int findById(String id);
      int updateUserInfo(UserRequestUpdateDto userRequestUpdateDto);
      int deleteUser(int user_no);
-
+     UserResponseInfoDto infoUser(int user_no);
+     List<UserResponseListDto> findAllUser();
 }

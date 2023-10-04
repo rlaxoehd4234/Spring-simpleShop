@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserRequestUpdateDto {
     private int user_no;
+    private String userId;
     private String address;
     private String email;
 }

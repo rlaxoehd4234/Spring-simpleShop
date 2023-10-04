@@ -22,8 +22,9 @@ public class QnAServiceImpl implements QnAService{
     private final QnAMapper qnAMapper;
     private final UserMapper userMapper;
     @Override
-    public int saveQnA(QnARequestSaveDto qnARequestSaveDto, HttpSession session) {
-        qnARequestSaveDto.setUser_no(userMapper.findById((String) session.getAttribute("id")));
+    public int saveQnA(QnARequestSaveDto qnARequestSaveDto) {
+        qnARequestSaveDto.setUser_no(userMapper.findById(qnARequestSaveDto.getUserId()));
+        qnARequestSaveDto.setItem_no(1);
         return qnAMapper.saveQnA(qnARequestSaveDto);
     }
 
@@ -41,6 +42,11 @@ public class QnAServiceImpl implements QnAService{
     public int deleteQnA(int qna_no, HttpSession session) {
         validUser(qna_no, session);
         return qnAMapper.deleteQnA(qna_no);
+    }
+
+    @Override
+    public List<QnAResponseListDto> findById(int itemId) {
+        return qnAMapper.findById(itemId);
     }
 
     public void validUser(int qna_no , HttpSession session){

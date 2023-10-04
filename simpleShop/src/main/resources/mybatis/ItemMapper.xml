@@ -27,4 +27,12 @@
     <select id="analWriter" resultType="com.shop.simpleshop.dto.item.ItemResponseAnalDto">
         select writer, count(item_no) as count from item group by writer;
     </select>
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.shop.simpleshop.dto.item.ItemResponseFindByIdDto">
+        select * from item where item_no = #{itemId};
+    </select>
+    <select id="findByStar" resultType="com.shop.simpleshop.dto.item.ItemResponseListDto">
+        SELECT ROW_NUMBER() OVER (ORDER BY cartCount DESC) AS item_no ,name, writer, price, stock, regDate, cartCount, sellCount FROM item
+        ORDER BY cartCount DESC
+            LIMIT 0, 10;
+    </select>
 </mapper>

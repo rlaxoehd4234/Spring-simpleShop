@@ -12,7 +12,7 @@
 
         $(document).ready(function(){
             $.ajax({
-                url: 'http://localhost:8080/api/item/findAll',
+                url: 'http://localhost:8080/api/item/findByStar',
                 method: 'GET',
                 dataType: 'text',
                 contentType: 'application/json',
@@ -97,7 +97,7 @@
     </header>
     <nav id ="menu">
         <ul>
-            <li><a href ="star.html">인기 상품</a></li>
+            <li><a href ="main.html">목록으로</a></li>
             <li><a href ="enroll.html">상품 등록</a></li>
             <li><a onclick="gotoList()">QnA 게시판</a></li>
             <li><a href ="chart.html">통계</a></li>
@@ -114,7 +114,7 @@
         <article>
             <table id ="item_table">
                 <tr>
-                    <th>번호</th>
+                    <th>랭킹</th>
                     <th>제목</th>
                     <th>저자</th>
                     <th>가격</th>

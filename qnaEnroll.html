@@ -11,10 +11,11 @@
         }
 
         function enroll(){
-
+            console.log(window.localStorage.getItem("id"))
             var sendData = {
                 title: document.getElementById("title").value,
-                content: document.getElementById("content").value
+                content: document.getElementById("content").value,
+                userId: window.localStorage.getItem("id")
             };
             $.ajax({
                 url: 'http://localhost:8080/api/qna/save',

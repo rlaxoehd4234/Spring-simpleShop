@@ -8,6 +8,7 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         let password;
+
         function callPassword(){
             var sendData = {
                 id: document.getElementById("id").value,
@@ -22,24 +23,19 @@
                     xhrFields: {
                         withCredentials: true // Credentials Request 허용
                     },
-                    headers: {
-                        'Origin': 'http://127.0.0.1:5500', // 프론트 엔드 도메인 주소
-                    },
-                    success: function(data) {
-                        // 서버에서 받은 비밀번호와 입력한 비밀번호를 비교합니다.
-                        if (data === $('#password').val()) {
-                        console.log()
-                        // 비밀번호가 일치하면 페이지를 이동합니다.
-                        document.location.href='main.html';
-                        } else {
-                        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('오류 발생:', error);
-                    }
-                    });
-        }
+                    success: function(data, textStatus, xhr) {
+                if (data === $('#password').val()) {
+                    // 비밀번호가 일치하면 페이지를 이동합니다.
+                    document.location.href = 'main.html';
+                    localStorage.setItem('id', sendData.id);
+                    console.log(sendData.id);
+                } else {
+                    alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+                }
+            }
+        })
+        }                   
+        
         $(document).ready(function(){
             $('#password').on('keyup', function(){
                 const inputValue = $(this).val();
@@ -62,8 +58,8 @@
                     callPassword();
                 }
             })
-
         })
+
     </script>
 </head>
 <body>

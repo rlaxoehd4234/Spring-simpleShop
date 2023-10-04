@@ -1,9 +1,6 @@
 package com.shop.simpleshop.mapper;
 
-import com.shop.simpleshop.dto.item.ItemResponseAnalDto;
-import com.shop.simpleshop.dto.item.ItemResponseListDto;
-import com.shop.simpleshop.dto.item.ItemSaveDto;
-import com.shop.simpleshop.dto.item.ItemUpdateDto;
+import com.shop.simpleshop.dto.item.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,4 +12,7 @@ public interface ItemMapper {
     int updateItem(int itemId,ItemUpdateDto itemUpdateDto);
     List<ItemResponseListDto> findAllItem();
     List<ItemResponseAnalDto> analWriter();
+    ItemResponseFindByIdDto findById(int itemId);
+    List<ItemResponseListDto> findByStar();
+
 }

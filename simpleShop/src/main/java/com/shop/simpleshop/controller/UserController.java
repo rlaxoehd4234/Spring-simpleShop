@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -27,15 +29,13 @@ public class UserController {
     public ResponseEntity<Integer> save(@RequestBody UserSignUpDto userSignUpDto){
         return ResponseEntity.ok().body(userService.signUpUser(userSignUpDto));
     }
-
-
     @ApiOperation(value = "로그인", notes = "정상 작동 시 비밀 번호 리턴")
     @ApiResponses({
             @ApiResponse(code = 200, message = "로그인 완료"),
             @ApiResponse(code = 400, message = "로그인 실패(비밀 번호 & 아이디 통합)")
     })
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto, HttpSession session){
+    public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto, HttpSession session, HttpServletResponse response){
         session.setAttribute("id",userLoginDto.getId());
         session.setMaxInactiveInterval(100000);
         return ResponseEntity.ok().body(userService.loginUser(userLoginDto));
@@ -47,8 +47,8 @@ public class UserController {
             @ApiResponse(code = 401, message = "권한이 없는 유저")
     })
     @GetMapping("/findUser")
-    public ResponseEntity<UserResponseInfoDto> findUser(HttpSession session){
-        return ResponseEntity.ok().body(userService.infoUser(session));
+    public ResponseEntity<UserResponseInfoDto> findUser(@RequestParam("userId") String userId){
+        return ResponseEntity.ok().body(userService.infoUser(userId));
     }
     @ApiOperation(value = "유저 정보 수정", notes = "정상 작동시 1 리턴")
     @ApiResponses({
@@ -56,8 +56,8 @@ public class UserController {
             @ApiResponse(code = 401, message = "권한이 없는 유저")
     })
     @PatchMapping("/updateInfo")
-    public ResponseEntity<Integer> updateUserInfo(@RequestBody UserRequestUpdateDto userRequestUpdateDto, HttpSession session){
-        return ResponseEntity.ok().body(userService.updateUserInfo(userRequestUpdateDto, session));
+    public ResponseEntity<Integer> updateUserInfo(@RequestBody UserRequestUpdateDto userRequestUpdateDto){
+        return ResponseEntity.ok().body(userService.updateUserInfo(userRequestUpdateDto));
     }
     @ApiOperation(value = "유저 탈퇴 ", notes = "정상 작동시 1 리턴")
     @ApiResponses({
@@ -76,5 +76,9 @@ public class UserController {
     @GetMapping("/findAllUser")
     public ResponseEntity<List<UserResponseListDto>> findAllUser(){
         return ResponseEntity.ok().body(userService.findAllUser());
+    }
+    @GetMapping("/get-session-data")
+    public ResponseEntity<String> getSessionData(@SessionAttribute("id") String id){
+        return ResponseEntity.ok().body(id);
     }
 }

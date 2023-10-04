@@ -18,4 +18,7 @@
     <select id = "findByUserNo" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select user_no from qna where qna_no = #{qna_no};
     </select>
+    <select id = "findById" parameterType="java.lang.Integer" resultType="com.shop.simpleshop.dto.QnA.QnAResponseListDto">
+        select * from qna where item_no = #{itemId};
+    </select>
 </mapper>

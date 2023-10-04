@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="itemInfo.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        var data = window.localStorage.getItem('id');
+        var currentURL = window.location.href;
+        var item_no = currentURL.split('item_no=')[1];
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8080/api/item/findById/'+item_no,
+                method: 'GET',
+                contentType: 'application/json',
+                dataType: 'text',
+                success: function(data){
+                    var jsonData = JSON.parse(data);
+                    console.log(data);
+                    var content = document.getElementById('item-info');
+                    var cellInfo = document.getElementById('price');
+                    var stockInfo = document.getElementById('stock'); 
+                    var maxPoint = document.getElementById('maxPoint'); 
+                    var minPoint = document.getElementById('minPoint'); 
+                    var name = document.getElementById('name');
+                    content.append(" "+jsonData.itemDetail);
+                    cellInfo.append(" "+jsonData.price);
+                    stockInfo.append(" "+jsonData.stock);
+                    name.append(window.localStorage.getItem('id') +" 님을 위한 적립 혜택");
+                    maxPoint.append("최대 적립 포인트:" + jsonData.price/10);
+                    minPoint.append("기본 적립 포인트:" + jsonData.price/20);
+
+                }
+            })
+            $.ajax({
+                url: 'http://localhost:8080/api/qna/findById/'+item_no,
+                method: 'GET',
+                contentType: 'application/json',
+                dataType: 'text',
+                success: function(data){    
+                    console.log(data);
+                    var jsonData = JSON.parse(data);
+                    $.each(jsonData, function(index,item){
+                        console.log("Item"+index + ": 저자:" + item.name + " 작성자:" + item.writer + " 가격:" + item.price +" 재고:" + item.stock);
+                        $("#tbody").append(
+                            "<tr><td>" + "<a onClick=\"infoQnA("+ item.qna_no +" )\">" + item.title + "</a></td><td>"+ item.answer+"</td> </tr> <tr id = \"title_tr"+ item.qna_no + "\"></tr>"
+                            
+                        )
+                    })
+                    
+                }
+            })
+            $.ajax({
+                url: 'http://localhost:8080/api/item/findById/'+item_no,
+                method: 'GET',
+                contentType: 'application/json',
+                dataType: 'text',
+                success: function(data){
+                    var jsonData = JSON.parse(data);
+                    var content = document.getElementById('item-info');
+                    content.append(jsonData.itemDetail);
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>SimpleShop</h1>
+        <nav id="service">
+            <a onclick="gotoLogin()">로그아웃</a>
+            <a onclick="gotoMyPage()">마이페이지</a>
+            <a href="#">설정</a>
+            <a href="#">장바구니</a>
+        </nav>
+    </header>
+    <div class ="enroll-form">
+        <aside>
+        <h3>상품 이미지</h3>  
+        <img src="jpa.jpeg">  
+        </aside>
+        <section>
+            <h1>김영한 JPA</h1>
+            <div id ="info"><p id = "name"></p><p id = "maxPoint"></p><p id = "minPoint"></p></div>
+                <div id = "cell-info"><p id = "price">가격:</p>
+                    <p id = "stock">남은 수량:</p></div>
+            <div><button value="구매하기"  id = "cell">구매하기</button></div>
+            <div>
+                 <button value="QnA" class = "other">QnA</button>
+                 <button value="찜하기" class = "other">찜하기(20)</button>
+                 <button value="장바구니" class = "other" id = "cart">장바구니</button>
+            </div>
+        </section>
+    </div>
+    <div class = "review-form">
+        <h2>베스트 리뷰(추가 예정)</h2>
+    </div>
+    <div id = "item-info">
+        <h2>상세 설명</h2>
+    </div>
+    <div id = "qna-form">
+        <h2>QnA</h2>
+        <table>
+            <tbody id = "tbody">
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

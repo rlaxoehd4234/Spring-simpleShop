@@ -1,15 +1,14 @@
 package com.shop.simpleshop.dto.item;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Service;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ItemResponseListDto {
+public class ItemResponseFindByIdDto {
     private int item_no;
     private String name;
     private int sellCount;
@@ -19,5 +18,4 @@ public class ItemResponseListDto {
     private int stock;
     private String itemDetail;
     private String regDate;
-
 }

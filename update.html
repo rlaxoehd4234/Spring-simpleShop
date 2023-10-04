@@ -7,10 +7,11 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
     <script>
+        var data = window.localStorage.getItem("id");
 
         $(document).ready(function(){
             $.ajax({
-                url : 'http://localhost:8080/api/user/findUser',
+                url : 'http://localhost:8080/api/user/findUser?userId='+data,
                 method : 'GET',
                 dataType: 'text',
                 contentType : 'application/json',
@@ -33,7 +34,8 @@
 
         function gotoUpdate(){
             var address = {address:document.getElementById("address").value,
-                            email: document.getElementById("email").value
+                            email: document.getElementById("email").value,
+                            userId: window.localStorage.getItem("id")
                             }
             $.ajax({
                 url :'http://localhost:8080/api/user/updateInfo',

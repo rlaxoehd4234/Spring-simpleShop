@@ -1,9 +1,6 @@
 package com.shop.simpleshop.controller;
 
-import com.shop.simpleshop.dto.item.ItemResponseAnalDto;
-import com.shop.simpleshop.dto.item.ItemResponseListDto;
-import com.shop.simpleshop.dto.item.ItemSaveDto;
-import com.shop.simpleshop.dto.item.ItemUpdateDto;
+import com.shop.simpleshop.dto.item.*;
 import com.shop.simpleshop.service.ItemService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -65,10 +62,19 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.findAllItem());
     }
 
+    @GetMapping("/findById/{item_id}")
+    public ResponseEntity<ItemResponseFindByIdDto> findById(@PathVariable Integer item_id){
+        return ResponseEntity.ok().body(itemService.findById(item_id));
+    }
 
     @GetMapping("/anal/writer")
     public ResponseEntity<List<ItemResponseAnalDto>> findAnalWriter(){
         return ResponseEntity.ok().body(itemService.analWriter());
+    }
+
+    @GetMapping("/findByStar")
+    public ResponseEntity<List<ItemResponseListDto>> findByStar(){
+        return ResponseEntity.ok().body(itemService.findByStar());
     }
 
 

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class QnARequestSaveDto {
     private int user_no;
     private int item_no;
+    private String userId;
     private String title;
     private String content;
     private String password;

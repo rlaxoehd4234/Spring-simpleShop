@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface QnAService {
-    int saveQnA(QnARequestSaveDto qnARequestSaveDto, HttpSession session);
+    int saveQnA(QnARequestSaveDto qnARequestSaveDto);
     List<QnAResponseListDto> findAllQnA();
     QnAResponseInfoDto findInfo(int qna_no);
-
     int deleteQnA(int qna_no , HttpSession session);
+    List<QnAResponseListDto> findById(int itemId);
+
+
 }

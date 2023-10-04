@@ -28,8 +28,8 @@ public class QnAController {
             @ApiResponse(code = 400 , message = "로그인 하지 않은 유저")
     })
     @PostMapping("/save")
-    public ResponseEntity<Integer> saveQnA(@RequestBody QnARequestSaveDto qnARequestSaveDto, HttpSession session){
-        return ResponseEntity.ok().body(qnAService.saveQnA(qnARequestSaveDto, session));
+    public ResponseEntity<Integer> saveQnA(@RequestBody QnARequestSaveDto qnARequestSaveDto){
+        return ResponseEntity.ok().body(qnAService.saveQnA(qnARequestSaveDto));
     }
 
     @ApiOperation(value = "QnA 리스트 반환", notes = "정상 작동 시 리스트 반환")
@@ -60,5 +60,10 @@ public class QnAController {
     @DeleteMapping("/delete/{qna_no}")
     public ResponseEntity<Integer> deleteQnA(@PathVariable("qna_no") int qna_no ,HttpSession session){
         return ResponseEntity.ok().body(qnAService.deleteQnA(qna_no, session));
+    }
+
+    @GetMapping("/findById/{item_id}")
+    public ResponseEntity<List<QnAResponseListDto>> findById(@PathVariable("item_id") Integer itemId){
+        return ResponseEntity.ok().body(qnAService.findById(itemId));
     }
 }

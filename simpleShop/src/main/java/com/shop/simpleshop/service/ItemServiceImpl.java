@@ -1,9 +1,6 @@
 package com.shop.simpleshop.service;
 
-import com.shop.simpleshop.dto.item.ItemResponseAnalDto;
-import com.shop.simpleshop.dto.item.ItemResponseListDto;
-import com.shop.simpleshop.dto.item.ItemSaveDto;
-import com.shop.simpleshop.dto.item.ItemUpdateDto;
+import com.shop.simpleshop.dto.item.*;
 import com.shop.simpleshop.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,5 +39,15 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public List<ItemResponseAnalDto> analWriter() {
         return itemMapper.analWriter();
+    }
+
+    @Override
+    public ItemResponseFindByIdDto findById(int itemId) {
+        return itemMapper.findById(itemId);
+    }
+
+    @Override
+    public List<ItemResponseListDto> findByStar() {
+        return itemMapper.findByStar();
     }
 }

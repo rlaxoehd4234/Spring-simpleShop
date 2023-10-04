@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUserInfo(UserRequestUpdateDto userRequestUpdateDto, HttpSession session) {
-        userRequestUpdateDto.setUser_no(userMapper.findById((String) session.getAttribute("id"))); // TODO: 수정
+    public int updateUserInfo(UserRequestUpdateDto userRequestUpdateDto) {
+        userRequestUpdateDto.setUser_no(userMapper.findById(userRequestUpdateDto.getUserId())); // TODO: 수정
         return userMapper.updateUserInfo(userRequestUpdateDto);
     }
 
@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseInfoDto infoUser(HttpSession session) {
-        return userMapper.infoUser(userMapper.findById((String) session.getAttribute("id")));
+    public UserResponseInfoDto infoUser(String userId) {
+        return userMapper.infoUser(userMapper.findById(userId));
     }
 
     @Override

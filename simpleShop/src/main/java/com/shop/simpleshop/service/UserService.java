@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserService {
      int signUpUser(UserSignUpDto userSignUpDto);
      String loginUser(UserLoginDto userLoginDto);
-     int updateUserInfo(UserRequestUpdateDto userRequestUpdateDto, HttpSession session);
+     int updateUserInfo(UserRequestUpdateDto userRequestUpdateDto);
      int deleteUser(HttpSession session);
-     UserResponseInfoDto infoUser(HttpSession session);
+     UserResponseInfoDto infoUser(String userId);
      List<UserResponseListDto> findAllUser();
 
 }

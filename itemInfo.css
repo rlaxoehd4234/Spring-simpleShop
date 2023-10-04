@@ -1,0 +1,133 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+}
+header ul {
+    list-style: none;
+    display: flex; 
+    gap: 10px;
+}
+header > ul > li {
+    text-decoration: none;
+}
+header #service{
+    margin-top: 30px;
+    margin-left: auto;
+}
+#menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#menu a{
+    padding: 20px;
+    background-color: royalblue;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+}
+article{
+    text-align: center;
+}
+nav ul{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.enroll-form{
+    display: flex;
+}
+
+aside{
+    border: 1px solid royalblue;
+    background-color: aliceblue;
+    width: 50%;
+    float: left;
+}
+section{
+    border: 1px solid royalblue;
+    background-color: aliceblue;
+    width: 50%;
+    float: left;;
+    text-align: center;
+}
+section h1{
+    margin-top: 100px;
+}
+
+
+.enroll-form #cell{
+    border: 2px royalblue solid;
+    border-radius: 4px;
+    background-color: royalblue;
+    color: white;
+    font-size: large;
+    width: 300px;
+    height: 40px;
+}
+.enroll-form #cell:hover{
+    background-color: yellow;
+    color: black;
+}
+.enroll-form .other{
+    margin-top: 3px;
+    border: 2px royalblue solid;
+    width: 97px;
+    border-radius: 4px;
+    background-color: white;
+    height: 40px;
+    margin-bottom: 100px;
+}
+.enroll-form .other:hover{
+    background-color: yellow;
+}
+.enroll-form h3{
+    text-align: center;
+}
+.enroll-form img{
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+}
+section #info{
+    margin: 0px 30px 10px 30px;
+    border: 1px royalblue solid;
+    
+}
+
+
+table {
+    width: 700px;
+    border: 1px solid royalblue;
+    border-spacing: 1px;
+    font-family: 'Cairo', sans-serif;
+    margin: auto;
+}
+
+caption {
+    font-weight: bold;
+}
+
+table td {
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+table th {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+img {
+    width: 90px;
+    height: 90px;
+}
+
+
+
+

@@ -7,9 +7,11 @@
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
     <script>
+        var sessionData;
+        var data = window.localStorage.getItem('id');
         $(document).ready(function(){
             $.ajax({
-                url : 'http://localhost:8080/api/user/findUser',
+                url : 'http://localhost:8080/api/user/findUser?userId='+data,
                 method : 'GET',
                 dataType: 'text',
                 contentType : 'application/json',

@@ -20,10 +20,7 @@
 - mybatis
 ### front end
 - react
-- ajax or axios
-### deploy
-- aws ec2
-- aws s3
+
 ### 의존성(추후 추가 예정)
 - spring web
 - lombok
